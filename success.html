@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>EZDL Purchase Complete</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('ezc-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (_) {}
+  })();
+</script>
+</head>
+<body>
+
+<div class="topbar wrap">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+    </span>
+    EZDL
+  </a>
+  <div class="topbar-right">
+    <nav class="topbar-nav">
+      <a class="legal-back" href="index.html">Home</a>
+      <a class="legal-back" href="pricing.html">Pricing</a>
+      <a class="legal-back" href="support.html">Support</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg class="theme-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
+      <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="M4.93 4.93l1.41 1.41" /><path d="M17.66 17.66l1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="M6.34 17.66l-1.41 1.41" /><path d="M19.07 4.93l-1.41 1.41" /></svg>
+    </button>
+  </div>
+</div>
+
+<div class="pricing-hero">
+  <span class="label">Purchase complete</span>
+  <h1 id="successHeading">Setting up your license…</h1>
+  <p id="successSub">Just a second — this usually takes a moment.</p>
+</div>
+
+<div id="successStatus" style="max-width:640px;margin:0 auto 24px;padding:0 20px;"></div>
+
+<div id="successBody" style="max-width:560px;margin:0 auto 60px;padding:0 20px;" hidden>
+  <div class="dash-link-card">
+    <div class="field-label-ish">Your license key</div>
+    <div class="dash-link-row">
+      <code id="licenseKey"></code>
+      <button class="dash-copy-btn" id="btnCopyKey" type="button">Copy key</button>
+    </div>
+    <div class="dash-note">
+      We also emailed this to <span id="licenseEmail"></span>. Paste the key
+      into EZDL's License page to activate — it works on up to 3 of your own
+      devices, and you can always come back here later if you lose it (check
+      your email).
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>EZDL &middot; LOCAL VIDEO &amp; AUDIO TOOLKIT</span>
+    <nav class="footer-links">
+      <a href="pricing.html">Pricing</a>
+      <a href="support.html">Support</a>
+      <a href="affiliate-signup.html">Affiliates</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <span>WINDOWS &middot; BUILD 0.1</span>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script>
+(function () {
+  var statusEl = document.getElementById('successStatus');
+  var bodyEl = document.getElementById('successBody');
+  var headingEl = document.getElementById('successHeading');
+  var subEl = document.getElementById('successSub');
+
+  function showStatus(text, kind) {
+    statusEl.textContent = text || '';
+    statusEl.className = text ? 'auth-msg ' + (kind || '') : '';
+    statusEl.style.display = text ? 'block' : 'none';
+  }
+
+  var sessionId = new URLSearchParams(window.location.search).get('session_id');
+  if (!sessionId || sessionId.indexOf('cs_') !== 0) {
+    headingEl.textContent = 'No order found';
+    subEl.textContent = 'This page is only meaningful right after a purchase.';
+    showStatus('If you just paid and landed here by mistake, check your email for the key — we send it there too.', 'error');
+    return;
+  }
+
+  var attempts = 0;
+  var MAX_ATTEMPTS = 10;
+
+  function poll() {
+    attempts++;
+    fetch(window.EZDL_API_BASE + '/api/checkout/session/' + encodeURIComponent(sessionId))
+      .then(function (res) { return res.json().then(function (json) { return { ok: res.ok, status: res.status, json: json }; }); })
+      .then(function (result) {
+        if (result.ok && result.json.ready) {
+          headingEl.textContent = 'You\'re all set';
+          subEl.textContent = 'Thanks for buying EZDL ' + (result.json.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '.';
+          document.getElementById('licenseKey').textContent = result.json.key;
+          document.getElementById('licenseEmail').textContent = result.json.email;
+          showStatus('', '');
+          bodyEl.hidden = false;
+          return;
+        }
+        if (attempts >= MAX_ATTEMPTS) {
+          headingEl.textContent = 'Almost there';
+          subEl.textContent = 'Your payment went through, but we\'re still finishing setup.';
+          showStatus('Check your email in a minute for the key, or contact support@ezdl.net with your receipt if it doesn\'t arrive.', 'error');
+          return;
+        }
+        setTimeout(poll, 1500);
+      })
+      .catch(function () {
+        if (attempts >= MAX_ATTEMPTS) {
+          showStatus('Could not reach the server. Check your email for the key, or refresh this page.', 'error');
+          return;
+        }
+        setTimeout(poll, 1500);
+      });
+  }
+  poll();
+
+  document.getElementById('btnCopyKey').addEventListener('click', function () {
+    var key = document.getElementById('licenseKey').textContent;
+    var btn = this;
+    var reset = function () { btn.textContent = 'Copy key'; };
+    navigator.clipboard.writeText(key).then(function () {
+      btn.textContent = 'Copied!';
+      setTimeout(reset, 1600);
+    }).catch(function () {
+      btn.textContent = 'Could not copy';
+      setTimeout(reset, 1600);
+    });
+  });
+})();
+</script>
+</body>
+</html>

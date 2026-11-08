@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZDL: Local video &amp; audio toolkit for Windows</title>
+<meta name="description" content="EZDL is a Windows desktop app for downloading, clipping, and cleaning up video and audio locally. Free for your first 24 hours.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('ezc-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (_) {}
+  })();
+</script>
+</head>
+<body>
+
+<noscript><style>
+  #preloader { display: none !important; }
+  .hero-eyebrow, .hero h1, .hero-sub, .hero-cta, .hero-cta-note, .hero-shot { opacity: 1 !important; animation: none !important; }
+</style></noscript>
+
+<div id="preloader" class="preloader" role="status" aria-live="polite">
+  <div class="preloader-inner">
+    <span class="preloader-spin" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+    </span>
+    <span class="preloader-text">Loading</span>
+  </div>
+  <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderFill"></div></div>
+  <span class="preloader-pct" id="preloaderPct">0%</span>
+</div>
+
+<div class="cursor-blob" id="cursorBlob" aria-hidden="true"></div>
+<div class="scroll-line" aria-hidden="true"><div class="scroll-line-fill" id="scrollLineFill"></div></div>
+
+<div class="topbar wrap">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+    </span>
+    EZDL
+  </a>
+  <div class="topbar-right">
+    <nav class="topbar-nav">
+      <a class="legal-back" href="index.html">Home</a>
+      <a class="legal-back" href="pricing.html">Pricing</a>
+      <a class="legal-back" href="support.html">Support</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg class="theme-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
+      <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="M4.93 4.93l1.41 1.41" /><path d="M17.66 17.66l1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="M6.34 17.66l-1.41 1.41" /><path d="M19.07 4.93l-1.41 1.41" /></svg>
+    </button>
+    <div class="topbar-tag"><span class="dot"></span> BUILD 0.1 &middot; WINDOWS</div>
+  </div>
+</div>
+
+<main class="hero">
+  <div class="hero-top wrap">
+    <div class="hero-eyebrow"><span class="label">Video &amp; audio, handled locally</span></div>
+    <h1>All-in-One <em>Downloader</em></h1>
+    <p class="hero-sub">
+      EZDL grabs video and audio from almost anywhere online, then
+      shapes it into exactly what you need: a clip, a clean podcast file,
+      a captioned cut. Free for your first 24 hours.
+    </p>
+    <div class="hero-cta">
+      <span class="btn-primary" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+        Download for Windows
+      </span>
+      <a class="hero-scroll" href="#modules">See what's inside &darr;</a>
+    </div>
+    <div class="hero-cta-note">
+      <b>Windows</b> today &middot; installer signing in progress &middot; macOS/Linux planned
+    </div>
+  </div>
+
+  <div class="hero-shot">
+    <img class="hero-shot-dark" src="img/tool-image-darkmode.png" alt="EZDL app window showing the download queue with completed downloads" width="1310" height="780">
+    <img class="hero-shot-light" src="img/tool-image-lightmode.png" alt="EZDL app window showing the download queue with completed downloads" width="1349" height="800">
+  </div>
+</main>
+
+<div class="sources">
+  <div class="sources-inner">
+    <span class="sources-label">Pulls from</span>
+    <div class="source-list mono">
+      <span>YouTube</span><span>TikTok</span><span>Instagram</span><span>Facebook</span>
+      <span>X</span><span>Twitch</span><span>Vimeo</span><span>Reddit</span><span>SoundCloud</span>
+      <span class="source-more">+ 1,800 more</span>
+    </div>
+  </div>
+</div>
+
+<section class="block reveal" id="modules">
+  <div class="block-glow" aria-hidden="true"></div>
+  <div class="block-head">
+    <span class="label">Tool rack</span>
+    <h2>One deck, twelve modules.</h2>
+    <p>Every tool runs on the same queue, side by side, on your own machine: no upload step, no render limits.</p>
+  </div>
+
+  <div class="modules">
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;00</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg></span>
+      </div>
+      <p>From a pasted link straight to MP4 or MP3, at any quality the source offers, with tags, cover art, subtitles, and SponsorBlock trimming along for the ride.</p>
+      <h3>Universal download</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;01</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg></span>
+      </div>
+      <p>Paste a whole list of links, or a playlist URL, and queue every one of them up at once instead of one at a time.</p>
+      <h3>Batch &amp; bulk</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;02</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg></span>
+      </div>
+      <p>Point it at a channel or playlist and it checks on a schedule, sorting new uploads into folders per channel, site, or date as they land.</p>
+      <h3>Watch a channel</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;03</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l4 -4l4 4" /><path d="M7 3l0 14" /><path d="M21 17l-4 4l-4 -4" /><path d="M17 21l0 -14" /></svg></span>
+      </div>
+      <p>Any format in, any format out, video or audio, for files you've already got sitting on your PC.</p>
+      <h3>Convert</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;04</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M8.6 8.6l10.4 10.4" /><path d="M8.6 15.4l10.4 -10.4" /></svg></span>
+      </div>
+      <p>Scrub to the in point, scrub to the out point, export the slice as an MP4, an animated GIF, or an audio snippet. Works on a local file or a pasted link.</p>
+      <h3>Clip &amp; GIF</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;05</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l2 6l4 -16l3 12l2 -4l2 2h2" /></svg></span>
+      </div>
+      <p>Cuts the dead air out of a recording: long pauses, gaps between speakers, top-and-tail silence, before it ever hits your feed.</p>
+      <h3>Silence remover</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;06</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M13.41 10.59l2.59 -2.59" /><path d="M7 12a5 5 0 0 1 5 -5" /></svg></span>
+      </div>
+      <p>Two-pass EBU&nbsp;R128 loudness matching, with presets for streaming, podcast, and broadcast targets. Nothing in the feed is suddenly twice as loud.</p>
+      <h3>Loudness normalize</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;07</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1 -1v-9" /><path d="M10 14l4 0" /></svg></span>
+      </div>
+      <p>Shrinks a file's size with a re-encode, hardware-accelerated on Nvidia cards so it doesn't eat the afternoon.</p>
+      <h3>Compress video</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;08</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v13a2 2 0 0 0 2 2h13" /><path d="M16 21v-13a2 2 0 0 0 -2 -2h-13" /></svg></span>
+      </div>
+      <p>Crop or pad a video to a target ratio like 9:16 or 1:1, dragging the frame over the preview to choose exactly what stays in shot.</p>
+      <h3>Aspect ratio</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;09</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M10 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" /><path d="M17 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" /></svg></span>
+      </div>
+      <p>Drop text or an image straight onto the frame, drag it into place, and set exactly when it fades in and out, watching the real footage as you go.</p>
+      <h3>Caption &amp; overlay editor</h3>
+    </div>
+
+    <div class="module rec">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;10</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="7" /></svg></span>
+      </div>
+      <p>Points at an ongoing stream and keeps recording until you tell it to stop, or until the stream ends on its own. Runs quietly in the tray in the meantime.</p>
+      <h3>Live recording</h3>
+    </div>
+
+    <div class="module">
+      <div class="module-top">
+        <span class="module-id mono">TOOL&nbsp;/&nbsp;11</span>
+        <span class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M10 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" /><path d="M17 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" /></svg></span>
+      </div>
+      <p>Grabs a video's manual subtitles if the uploader added them, otherwise auto-generated captions, as plain text, SRT, or VTT. No video or audio downloaded.</p>
+      <h3>Transcript</h3>
+    </div>
+  </div>
+</section>
+
+<section class="spotlight reveal">
+  <div class="spotlight-inner">
+    <div class="spotlight-image">
+      <img src="img/spotlight-tool.png" alt="EZDL app window" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+      <div class="spotlight-placeholder" hidden>
+        <span>Drop your screenshot at</span>
+        <code>img/spotlight-tool.png</code>
+      </div>
+    </div>
+    <div class="spotlight-text">
+      <span class="label spotlight-label">No risk</span>
+      <h2>24 hours free.<br>No card, no catch.</h2>
+      <p>Try every tool on the deck before you decide anything. If it earns a spot on your PC, upgrading takes one click. If not, you've lost nothing.</p>
+      <div class="hero-cta">
+        <span class="btn-primary spotlight-btn" aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+          Download for Windows
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal">
+  <div class="block-head">
+    <span class="label">The alternative</span>
+    <h2>Skip the ad-riddled converter sites.</h2>
+    <p>Free online converters make their money off your traffic, not your download &mdash; that's the ads, the fake "Download" buttons, and the upload you didn't ask for.</p>
+  </div>
+
+  <div class="compare-wrap">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Online converter sites</th>
+          <th scope="col">EZDL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Uploads your video to a server</th>
+          <td class="cmp-no">Yes, every time</td>
+          <td class="cmp-yes">Never &mdash; runs on your PC</td>
+        </tr>
+        <tr>
+          <th scope="row">File size / length limits</th>
+          <td class="cmp-no">Common</td>
+          <td class="cmp-yes">None</td>
+        </tr>
+        <tr>
+          <th scope="row">Ads &amp; fake download buttons</th>
+          <td class="cmp-no">Usually</td>
+          <td class="cmp-yes">None</td>
+        </tr>
+        <tr>
+          <th scope="row">Downloads at once</th>
+          <td class="cmp-no">One at a time</td>
+          <td class="cmp-yes">Up to 6 in parallel</td>
+        </tr>
+        <tr>
+          <th scope="row">Tools in one place</th>
+          <td class="cmp-no">One converter, one job</td>
+          <td class="cmp-yes">12 tools, one queue</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block reveal">
+  <div class="block-head">
+    <span class="label">At a glance</span>
+    <h2>What's actually in the box.</h2>
+    <p>Fewer marketing words, more of what you're really deciding on.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <b>12</b>
+      <span class="stat-label">Tools, one queue</span>
+      <p class="stat-note">Convert, clip, compress, and the rest, without opening a second app.</p>
+    </div>
+    <div class="stat">
+      <b>1,800+</b>
+      <span class="stat-label">Source sites</span>
+      <p class="stat-note">YouTube, TikTok, Instagram, and eighteen hundred more, one paste box.</p>
+    </div>
+    <div class="stat">
+      <b>0</b>
+      <span class="stat-label">Upload steps</span>
+      <p class="stat-note">Everything runs on your own machine. Nothing leaves it.</p>
+    </div>
+    <div class="stat">
+      <b>1&ndash;6</b>
+      <span class="stat-label">Parallel downloads</span>
+      <p class="stat-note">Set your own limit in Settings, from one at a time to six.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closer reveal">
+  <div class="closer-glow" aria-hidden="true"></div>
+  <span class="label">Get EZDL</span>
+  <h2>Everything above. One download.</h2>
+  <p>Convert, clip, compress, caption, and the rest, all in the same queue. Get EZDL for Windows and try it yourself.</p>
+
+  <div class="closer-points">
+    <div class="closer-point">
+      <span class="closer-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11v-4a4 4 0 0 1 8 0v4" /></svg></span>
+      <span>Nothing you convert leaves your PC</span>
+    </div>
+    <div class="closer-point">
+      <span class="closer-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.3l5.3 1.7l-5.3 1.7l-1.7 5.3l-1.7 -5.3l-5.3 -1.7l5.3 -1.7z" /></svg></span>
+      <span>24 hours, completely free</span>
+    </div>
+    <div class="closer-point">
+      <span class="closer-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5l-9 5l-9 -5z" /><path d="M3 13l9 5l9 -5" /></svg></span>
+      <span>12 tools, one download, no add-ons</span>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <span class="btn-primary" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+      Download for Windows
+    </span>
+  </div>
+  <p class="closer-note">Windows today &middot; installer signing in progress &middot; macOS/Linux planned</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>EZDL &middot; LOCAL VIDEO &amp; AUDIO TOOLKIT</span>
+    <nav class="footer-links">
+      <a href="pricing.html">Pricing</a>
+      <a href="support.html">Support</a>
+      <a href="affiliate-signup.html">Affiliates</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <span>WINDOWS &middot; BUILD 0.1</span>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

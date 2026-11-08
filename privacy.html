@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZDL Privacy Policy</title>
+<meta name="description" content="Privacy Policy for EZDL, the local video and audio toolkit for Windows.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('ezc-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (_) {}
+  })();
+</script>
+</head>
+<body>
+
+<div class="topbar wrap">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+    </span>
+    EZDL
+  </a>
+  <div class="topbar-right">
+    <nav class="topbar-nav">
+      <a class="legal-back" href="index.html">Home</a>
+      <a class="legal-back" href="pricing.html">Pricing</a>
+      <a class="legal-back" href="support.html">Support</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg class="theme-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
+      <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="M4.93 4.93l1.41 1.41" /><path d="M17.66 17.66l1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="M6.34 17.66l-1.41 1.41" /><path d="M19.07 4.93l-1.41 1.41" /></svg>
+    </button>
+    <div class="topbar-tag"><span class="dot"></span> BUILD 0.1 &middot; WINDOWS</div>
+  </div>
+</div>
+
+<article class="legal-article">
+  <span class="label">Legal</span>
+  <h1>Privacy Policy</h1>
+  <p class="legal-updated">Last updated: September 13, 2026</p>
+
+  <p>This Privacy Policy explains what information EZDL ("we", "us", "our")
+  collects when you use the EZDL app or the ezdl.net website, and how we
+  use it. The short version: EZDL runs locally, we collect the minimum
+  needed to run your account and keep the app working, and we never see
+  the videos or audio you download.</p>
+
+  <h2>1. How EZDL handles the media you download</h2>
+  <p>All downloading and converting happens directly on your own computer.
+  When you paste a link, the App talks to the source site and saves the
+  file straight to your chosen folder — it is never uploaded to, or
+  routed through, our servers. Your download history is kept only in a
+  local file on your own computer — we never see it, and it's never sent
+  to us.</p>
+
+  <h2>2. Information we collect</h2>
+  <table>
+    <tr><th>What</th><th>When</th><th>Why</th></tr>
+    <tr>
+      <td>Email address &amp; password (hashed)</td>
+      <td>When you create an account</td>
+      <td>To sign you in and identify your subscription</td>
+    </tr>
+    <tr>
+      <td>Subscription status &amp; Stripe customer/subscription IDs</td>
+      <td>When you subscribe to a paid plan</td>
+      <td>To know which features your account can use</td>
+    </tr>
+    <tr>
+      <td>Anonymous error reports — the error message (with any URL
+      stripped out), app version, and OS</td>
+      <td>When a download or tool fails</td>
+      <td>To find and fix bugs; not linked to your account</td>
+    </tr>
+  </table>
+  <p>Payment card details are entered directly with our payment processor,
+  Stripe, and never pass through our servers or the App.</p>
+
+  <h2>3. Information that stays on your device</h2>
+  <p>Some settings never leave your computer: your output folder, proxy /
+  VPN configuration and credentials, browser cookie selection (used to
+  download content you're logged into), and the download queue itself.
+  These are stored in a local settings file and are not transmitted to
+  us.</p>
+
+  <h2>4. What we don't do</h2>
+  <ul>
+    <li>We don't run ads, ad trackers, or third-party analytics SDKs in
+    the App or on the Site.</li>
+    <li>We don't sell your data to anyone.</li>
+    <li>We don't read the contents of files you download or convert.</li>
+  </ul>
+
+  <h2>5. Where your data is stored</h2>
+  <p>Account data is stored with our database provider, Supabase. Payment
+  data is held by Stripe. Both are bound by their own security and
+  privacy practices as our data processors.</p>
+
+  <h2>6. Data retention and deletion</h2>
+  <p>We keep your account for as long as it exists. To delete your
+  account and associated data, email us at
+  <a href="mailto:support@ezdl.net">support@ezdl.net</a> — we'll confirm
+  once it's done. Anonymous error reports aren't linked to an account and
+  can't be deleted individually.</p>
+
+  <h2>7. Your rights</h2>
+  <p>Depending on where you live, you may have rights to access, correct,
+  export, or delete your personal data, and to object to or restrict
+  certain processing. Contact us at
+  <a href="mailto:support@ezdl.net">support@ezdl.net</a> to exercise any
+  of these.</p>
+
+  <h2>8. Children's privacy</h2>
+  <p>EZDL isn't directed at children under 13, and we don't knowingly
+  collect personal information from them.</p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>We may update this policy as the product changes. We'll update the
+  "Last updated" date above when we do.</p>
+
+  <h2>10. Contact</h2>
+  <p>Questions about this policy or your data? Email us at
+  <a href="mailto:support@ezdl.net">support@ezdl.net</a>.</p>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <span>EZDL &middot; LOCAL VIDEO &amp; AUDIO TOOLKIT</span>
+    <nav class="footer-links">
+      <a href="pricing.html">Pricing</a>
+      <a href="support.html">Support</a>
+      <a href="affiliate-signup.html">Affiliates</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <span>WINDOWS &middot; BUILD 0.1</span>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

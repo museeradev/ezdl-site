@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+
+# Not part of the site — a ComfyUI portable install that landed in img/ by
+# mistake (~6GB). Left in place, just kept out of git.
+img/ComfyUI_windows_portable_nvidia/
+img/ComfyUI_windows_portable_nvidia.7z

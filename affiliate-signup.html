@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZDL Affiliate Program</title>
+<meta name="description" content="Earn 50% commission on every first-time EZDL purchase you refer. Free to join, paid out directly.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('ezc-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (_) {}
+  })();
+</script>
+</head>
+<body>
+
+<div class="topbar wrap">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+    </span>
+    EZDL
+  </a>
+  <div class="topbar-right">
+    <nav class="topbar-nav">
+      <a class="legal-back" href="index.html">Home</a>
+      <a class="legal-back" href="pricing.html">Pricing</a>
+      <a class="legal-back" href="support.html">Support</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg class="theme-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
+      <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="M4.93 4.93l1.41 1.41" /><path d="M17.66 17.66l1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="M6.34 17.66l-1.41 1.41" /><path d="M19.07 4.93l-1.41 1.41" /></svg>
+    </button>
+    <div class="topbar-tag"><span class="dot"></span> BUILD 0.1 &middot; WINDOWS</div>
+  </div>
+</div>
+
+<div class="affiliate-hero">
+  <span class="label">Affiliate Program</span>
+  <h1>Earn 50% on every referral.</h1>
+  <p>
+    Share your link. When someone buys their first EZDL license through it,
+    you get half the sale, paid directly to you. Free to join, no minimum
+    payout threshold.
+  </p>
+</div>
+
+<ul class="affiliate-pitch">
+  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l9 -9" /></svg>50% commission on Yearly and Lifetime sales</li>
+  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l9 -9" /></svg>One link, tracked automatically for 60 days</li>
+  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l9 -9" /></svg>A dashboard showing every referral and payout</li>
+  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l9 -9" /></svg>No account fees, no minimum sales</li>
+</ul>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <form id="signupForm" novalidate>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" type="text" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="new-password" required />
+        <div class="field-hint">At least 8 characters.</div>
+      </div>
+      <div class="field">
+        <label for="payoutEmail">Payout email (PayPal)</label>
+        <input id="payoutEmail" type="email" autocomplete="email" required />
+        <div class="field-hint">Where we send your commission.</div>
+      </div>
+      <button class="auth-submit" type="submit" id="signupSubmit">Create affiliate account</button>
+      <div class="auth-msg" id="signupMsg"></div>
+    </form>
+    <div class="auth-switch">Already an affiliate? <a href="affiliate-login.html">Log in</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>EZDL &middot; LOCAL VIDEO &amp; AUDIO TOOLKIT</span>
+    <nav class="footer-links">
+      <a href="pricing.html">Pricing</a>
+      <a href="support.html">Support</a>
+      <a href="affiliate-signup.html">Affiliates</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <span>WINDOWS &middot; BUILD 0.1</span>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script>
+  (function () {
+    // Already signed in (e.g. clicked "Affiliates" in the footer again) —
+    // go straight to the dashboard instead of showing the form again. The
+    // dashboard itself re-validates the token and bounces back here if it's
+    // actually stale, so this redirect is safe either way.
+    try {
+      if (localStorage.getItem('ezdl-affiliate-token')) {
+        window.location.href = 'affiliate-dashboard.html';
+        return;
+      }
+    } catch (_) {}
+
+    var form = document.getElementById('signupForm');
+    var submitBtn = document.getElementById('signupSubmit');
+    var msg = document.getElementById('signupMsg');
+
+    function setMsg(text, kind) {
+      msg.textContent = text || '';
+      msg.className = 'auth-msg' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var payoutEmail = document.getElementById('payoutEmail').value.trim();
+
+      if (!name || !email || !payoutEmail) {
+        setMsg('Fill in every field.', 'error');
+        return;
+      }
+      if (password.length < 8) {
+        setMsg('Password must be at least 8 characters.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creating account…';
+      setMsg('');
+
+      fetch(window.EZDL_API_BASE + '/api/affiliate/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, password: password, payoutEmail: payoutEmail }),
+      })
+        .then(function (res) {
+          return res.json().then(function (json) {
+            return { ok: res.ok, json: json };
+          });
+        })
+        .then(function (result) {
+          if (!result.ok) {
+            setMsg(result.json.error || 'Could not create your account.', 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create affiliate account';
+            return;
+          }
+          try {
+            localStorage.setItem('ezdl-affiliate-token', result.json.token);
+          } catch (_) {}
+          window.location.href = 'affiliate-dashboard.html';
+        })
+        .catch(function () {
+          setMsg('Could not reach the server. Try again in a moment.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create affiliate account';
+        });
+    });
+  })();
+</script>
+</body>
+</html>
