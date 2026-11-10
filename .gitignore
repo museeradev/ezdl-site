@@ -7,3 +7,10 @@ node_modules/
 # mistake (~6GB). Left in place, just kept out of git.
 img/ComfyUI_windows_portable_nvidia/
 img/ComfyUI_windows_portable_nvidia.7z
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

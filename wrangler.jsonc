@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ezdl-site",
+  "compatibility_date": "2026-11-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "."
+  },
+  "routes": [
+    { "pattern": "ezdl.net", "custom_domain": true },
+    { "pattern": "www.ezdl.net", "custom_domain": true }
+  ]
+}

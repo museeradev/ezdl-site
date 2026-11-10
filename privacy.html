@@ -46,13 +46,13 @@
 <article class="legal-article">
   <span class="label">Legal</span>
   <h1>Privacy Policy</h1>
-  <p class="legal-updated">Last updated: September 13, 2026</p>
+  <p class="legal-updated">Last updated: November 10, 2026</p>
 
   <p>This Privacy Policy explains what information EZDL ("we", "us", "our")
   collects when you use the EZDL app or the ezdl.net website, and how we
-  use it. The short version: EZDL runs locally, we collect the minimum
-  needed to run your account and keep the app working, and we never see
-  the videos or audio you download.</p>
+  use it. The short version: EZDL runs locally, there are no user accounts,
+  we collect the minimum needed to issue and validate a license, and we
+  never see the videos or audio you download.</p>
 
   <h2>1. How EZDL handles the media you download</h2>
   <p>All downloading and converting happens directly on your own computer.
@@ -66,20 +66,30 @@
   <table>
     <tr><th>What</th><th>When</th><th>Why</th></tr>
     <tr>
-      <td>Email address &amp; password (hashed)</td>
-      <td>When you create an account</td>
-      <td>To sign you in and identify your subscription</td>
+      <td>A hashed, one-way device identifier (not reversible to your
+      identity)</td>
+      <td>On first launch, and when activating a license</td>
+      <td>To run the 24-hour trial and enforce the per-license device
+      limit</td>
     </tr>
     <tr>
-      <td>Subscription status &amp; Stripe customer/subscription IDs</td>
-      <td>When you subscribe to a paid plan</td>
-      <td>To know which features your account can use</td>
+      <td>Email address &amp; license key</td>
+      <td>When you purchase a license</td>
+      <td>To deliver your key and let you recover it by email if lost</td>
+    </tr>
+    <tr>
+      <td>Email address &amp; password (hashed)</td>
+      <td>Only if you join the affiliate program</td>
+      <td>To sign you in to the affiliate dashboard and track referral
+      commissions</td>
     </tr>
     <tr>
       <td>Anonymous error reports — the error message (with any URL
-      stripped out), app version, and OS</td>
-      <td>When a download or tool fails</td>
-      <td>To find and fix bugs; not linked to your account</td>
+      stripped out), which site, the tool used, app version, and OS</td>
+      <td>Only if you enable "Send anonymous error reports" in Settings,
+      and only when a download or tool fails</td>
+      <td>To find and fix bugs; not linked to your license, email, or
+      device</td>
     </tr>
   </table>
   <p>Payment card details are entered directly with our payment processor,
@@ -101,16 +111,19 @@
   </ul>
 
   <h2>5. Where your data is stored</h2>
-  <p>Account data is stored with our database provider, Supabase. Payment
-  data is held by Stripe. Both are bound by their own security and
-  privacy practices as our data processors.</p>
+  <p>License, trial, and affiliate data is stored with our database
+  provider, MongoDB Atlas. Payment data is held by Stripe. License key
+  emails are sent through our email provider, Resend. All three are bound
+  by their own security and privacy practices as our data processors.</p>
 
   <h2>6. Data retention and deletion</h2>
-  <p>We keep your account for as long as it exists. To delete your
-  account and associated data, email us at
+  <p>We keep license and affiliate records for as long as needed to
+  provide support, validate activations, and meet our own legal/tax
+  obligations. To request deletion of your email address from our
+  records, email us at
   <a href="mailto:support@ezdl.net">support@ezdl.net</a> — we'll confirm
-  once it's done. Anonymous error reports aren't linked to an account and
-  can't be deleted individually.</p>
+  once it's done. Anonymous error reports aren't linked to a license or
+  identity and can't be deleted individually.</p>
 
   <h2>7. Your rights</h2>
   <p>Depending on where you live, you may have rights to access, correct,

@@ -291,6 +291,24 @@
       </table>
       <div class="empty" id="commissionEmpty" style="display:none;">No pending commissions.</div>
     </div>
+
+    <h2 style="margin-top:32px;">Recent error reports</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Site</th>
+            <th>Tool</th>
+            <th>Error</th>
+            <th>Version</th>
+            <th>OS</th>
+            <th>Reported</th>
+          </tr>
+        </thead>
+        <tbody id="errorReportRows"></tbody>
+      </table>
+      <div class="empty" id="errorReportEmpty" style="display:none;">No error reports yet.</div>
+    </div>
   </div>
 </div>
 
@@ -415,6 +433,24 @@
     });
   }
 
+  function renderErrorReports(rows) {
+    var tbody = document.getElementById('errorReportRows');
+    var empty = document.getElementById('errorReportEmpty');
+    tbody.innerHTML = '';
+    empty.style.display = rows.length ? 'none' : 'block';
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + (r.site || '—') + '</td>' +
+        '<td>' + (r.tool || '—') + '</td>' +
+        '<td>' + (r.errorMessage || '—') + '</td>' +
+        '<td>' + (r.appVersion || '—') + '</td>' +
+        '<td>' + (r.osPlatform || '—') + '</td>' +
+        '<td>' + fmtDate(r.createdAt) + '</td>';
+      tbody.appendChild(tr);
+    });
+  }
+
   async function loadDashboard(baseUrl, token, statusNode) {
     var stats = await callAdmin(baseUrl, token, '/api/admin/stats');
     document.getElementById('statActiveYearly').textContent = stats.activeYearly;
@@ -433,6 +469,9 @@
 
     var commissionData = await callAdmin(baseUrl, token, '/api/admin/commissions?status=pending');
     renderCommissions(commissionData.commissions || [], baseUrl, token);
+
+    var errorReportData = await callAdmin(baseUrl, token, '/api/admin/error-reports?limit=100');
+    renderErrorReports(errorReportData.errorReports || []);
 
     setStatus(statusNode, '', '');
   }

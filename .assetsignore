@@ -1,0 +1,17 @@
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+/_worker.js
+/_routes.json
+/functions
+node_modules
+.git
+.DS_Store
+.npmrc
+
+# Not part of the site — stray ComfyUI install, not meant to be deployed.
+img/ComfyUI_windows_portable_nvidia/
+img/ComfyUI_windows_portable_nvidia.7z
