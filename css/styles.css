@@ -1129,15 +1129,12 @@ footer {
 }
 
 .pricing-grid {
-  max-width: 1040px;
+  max-width: 860px;
   margin: 48px auto 0;
   padding-inline: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-}
-@media (max-width: 900px) {
-  .pricing-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 700px) {
   .pricing-grid { grid-template-columns: 1fr; }

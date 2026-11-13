@@ -206,10 +206,6 @@
 
     <div class="stat-grid">
       <div class="stat-tile accent">
-        <div class="n" id="statActiveMonthly">—</div>
-        <div class="l">Active — Monthly</div>
-      </div>
-      <div class="stat-tile accent">
         <div class="n" id="statActiveYearly">—</div>
         <div class="l">Active — Yearly</div>
       </div>
@@ -227,7 +223,7 @@
       </div>
       <div class="stat-tile">
         <div class="n" id="statExpired">—</div>
-        <div class="l">Expired (monthly/yearly, lapsed)</div>
+        <div class="l">Expired (yearly, lapsed)</div>
       </div>
       <div class="stat-tile">
         <div class="n" id="statRevoked">—</div>
@@ -362,10 +358,6 @@
     return '<span class="pill active">Active</span>';
   }
 
-  function planLabel(plan) {
-    return plan === 'lifetime' ? 'Lifetime' : plan === 'monthly' ? 'Monthly' : 'Yearly';
-  }
-
   function renderLicenses(rows) {
     var tbody = document.getElementById('licenseRows');
     var empty = document.getElementById('licenseEmpty');
@@ -376,7 +368,7 @@
       tr.innerHTML =
         '<td class="key">' + l.key + '</td>' +
         '<td>' + (l.email || '—') + '</td>' +
-        '<td>' + planLabel(l.plan) + '</td>' +
+        '<td>' + (l.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '</td>' +
         '<td>' + statusPill(l) + '</td>' +
         '<td>' + (l.plan === 'lifetime' ? 'Never' : fmtDate(l.expiresAt)) + '</td>' +
         '<td>' + l.devicesUsed + ' / 3</td>' +
@@ -415,7 +407,7 @@
       tr.innerHTML =
         '<td>' + affName + '</td>' +
         '<td>' + c.customerEmail + '</td>' +
-        '<td>' + planLabel(c.plan) + '</td>' +
+        '<td>' + (c.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '</td>' +
         '<td>$' + c.saleAmount.toFixed(2) + '</td>' +
         '<td>$' + c.commissionAmount.toFixed(2) + '</td>' +
         '<td>' + fmtDate(c.createdAt) + '</td>' +
@@ -461,13 +453,11 @@
 
   async function loadDashboard(baseUrl, token, statusNode) {
     var stats = await callAdmin(baseUrl, token, '/api/admin/stats');
-    document.getElementById('statActiveMonthly').textContent = stats.activeMonthly;
     document.getElementById('statActiveYearly').textContent = stats.activeYearly;
     document.getElementById('statActiveLifetime').textContent = stats.activeLifetime;
-    document.getElementById('statTotalActive').textContent =
-      stats.activeMonthly + stats.activeYearly + stats.activeLifetime;
+    document.getElementById('statTotalActive').textContent = stats.activeYearly + stats.activeLifetime;
     document.getElementById('statDevices').textContent = stats.totalDevicesActivated;
-    document.getElementById('statExpired').textContent = stats.expiredMonthly + stats.expiredYearly;
+    document.getElementById('statExpired').textContent = stats.expiredYearly;
     document.getElementById('statRevoked').textContent = stats.revoked;
     document.getElementById('statTotalIssued').textContent = stats.totalKeysIssued;
 

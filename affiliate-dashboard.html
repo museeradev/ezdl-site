@@ -186,7 +186,7 @@
       var pillLabel = c.status === 'paid' ? 'Paid' : 'Pending';
       tr.innerHTML =
         '<td>' + fmtDate(c.createdAt) + '</td>' +
-        '<td>' + (c.plan === 'lifetime' ? 'Lifetime' : c.plan === 'monthly' ? 'Monthly' : 'Yearly') + '</td>' +
+        '<td>' + (c.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '</td>' +
         '<td>' + fmtMoney(c.saleAmount) + '</td>' +
         '<td>' + fmtMoney(c.commissionAmount) + '</td>' +
         '<td><span class="dash-pill ' + pillClass + '">' + pillLabel + '</span></td>';
