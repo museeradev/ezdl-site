@@ -46,7 +46,7 @@
   <div class="dash-head">
     <div>
       <h1 id="dashGreeting">Your dashboard</h1>
-      <p>Track your referral link, conversions, and commission.</p>
+      <p>Track your referral link, downloads, conversions, and commission.</p>
     </div>
     <button class="dash-logout" id="btnLogout" type="button">Log out</button>
   </div>
@@ -68,6 +68,10 @@
     </div>
 
     <div class="dash-stats">
+      <div class="dash-stat">
+        <div class="n" id="statDownloads">—</div>
+        <div class="l">Downloads</div>
+      </div>
       <div class="dash-stat accent">
         <div class="n" id="statConversions">—</div>
         <div class="l">Conversions</div>
@@ -209,6 +213,7 @@
       document.getElementById('dashGreeting').textContent = 'Welcome, ' + affiliate.name;
       var link = window.location.origin + '/pricing.html?ref=' + affiliate.code;
       document.getElementById('refLink').textContent = link;
+      document.getElementById('statDownloads').textContent = stats.downloads || 0;
       document.getElementById('statConversions').textContent = stats.conversions;
       document.getElementById('statPending').textContent = fmtMoney(stats.pendingCommission);
       document.getElementById('statPaid').textContent = fmtMoney(stats.paidCommission);

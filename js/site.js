@@ -160,6 +160,19 @@
     }
   };
 
+  // Download buttons carry the stored referral so the server can count
+  // installer downloads per affiliate.
+  var storedRef = window.EZDL_getStoredReferral();
+  if (storedRef) {
+    document.querySelectorAll('a[href*="/download"]').forEach(function (a) {
+      try {
+        var u = new URL(a.href);
+        u.searchParams.set('ref', storedRef);
+        a.href = u.toString();
+      } catch (_) {}
+    });
+  }
+
   // --- reveal sections as they enter the viewport ---
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {

@@ -263,6 +263,7 @@
             <th>Email</th>
             <th>Payout to</th>
             <th>Code</th>
+            <th>Downloads</th>
             <th>Conversions</th>
             <th>Pending</th>
             <th>Paid</th>
@@ -389,6 +390,7 @@
         '<td>' + a.email + '</td>' +
         '<td>' + a.payoutEmail + '</td>' +
         '<td class="key">' + a.code + '</td>' +
+        '<td>' + (a.downloads || 0) + '</td>' +
         '<td>' + a.conversions + '</td>' +
         '<td>$' + a.pendingCommission.toFixed(2) + '</td>' +
         '<td>$' + a.paidCommission.toFixed(2) + '</td>';
