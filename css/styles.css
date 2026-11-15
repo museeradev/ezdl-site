@@ -419,9 +419,7 @@ h1, h2, h3 {
 }
 .btn-primary svg { width: 16px; height: 16px; flex: none; }
 
-/* A real, clickable CTA (no [aria-disabled]) — everywhere else .btn-primary
-   is used as an inert "coming soon" pill, so this only lights up on the
-   ones that actually do something (e.g. a mailto: link). */
+/* Clickable buttons only; an [aria-disabled] .btn-primary stays inert. */
 .btn-primary:not([aria-disabled]) {
   cursor: pointer;
   text-decoration: none;
@@ -753,6 +751,19 @@ section.block {
   border-color: #ffffff;
   color: #017360;
   font-weight: 700;
+  transition: background-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+/* Must out-rank the generic .btn-primary hover, which turns text near-white
+   and would vanish on this white button. */
+.btn-primary.spotlight-btn:not([aria-disabled]):hover {
+  background: #e6fbf5;
+  border-color: #ffffff;
+  color: #01594b;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary.spotlight-btn:not([aria-disabled]):hover { transform: none; }
 }
 
 .spotlight-image {
