@@ -77,9 +77,9 @@
         <div class="field-hint">At least 8 characters.</div>
       </div>
       <div class="field">
-        <label for="payoutEmail">Payout email (PayPal)</label>
-        <input id="payoutEmail" type="email" autocomplete="email" required />
-        <div class="field-hint">Where we send your commission.</div>
+        <label for="payoutEmail">Payout email (PayPal, optional)</label>
+        <input id="payoutEmail" type="email" autocomplete="email" />
+        <div class="field-hint">Where we send your commission. Leave blank to use the email above.</div>
       </div>
       <button class="auth-submit" type="submit" id="signupSubmit">Create affiliate account</button>
       <div class="auth-msg" id="signupMsg"></div>
@@ -133,8 +133,8 @@
       var password = document.getElementById('password').value;
       var payoutEmail = document.getElementById('payoutEmail').value.trim();
 
-      if (!name || !email || !payoutEmail) {
-        setMsg('Fill in every field.', 'error');
+      if (!name || !email) {
+        setMsg('Enter your name and email.', 'error');
         return;
       }
       if (password.length < 8) {
