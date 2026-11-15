@@ -280,6 +280,7 @@
         <thead>
           <tr>
             <th>Affiliate</th>
+            <th>Pay to (PayPal)</th>
             <th>Customer</th>
             <th>Plan</th>
             <th>Sale</th>
@@ -332,6 +333,12 @@
     node.style.display = text ? 'block' : 'none';
   }
 
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
   function fmtDate(iso) {
     if (!iso) return '—';
     var d = new Date(iso);
@@ -367,8 +374,8 @@
     rows.forEach(function (l) {
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td class="key">' + l.key + '</td>' +
-        '<td>' + (l.email || '—') + '</td>' +
+        '<td class="key">' + esc(l.key) + '</td>' +
+        '<td>' + esc(l.email || '—') + '</td>' +
         '<td>' + (l.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '</td>' +
         '<td>' + statusPill(l) + '</td>' +
         '<td>' + (l.plan === 'lifetime' ? 'Never' : fmtDate(l.expiresAt)) + '</td>' +
@@ -386,10 +393,10 @@
     rows.forEach(function (a) {
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td>' + a.name + '</td>' +
-        '<td>' + a.email + '</td>' +
-        '<td>' + a.payoutEmail + '</td>' +
-        '<td class="key">' + a.code + '</td>' +
+        '<td>' + esc(a.name) + '</td>' +
+        '<td>' + esc(a.email) + '</td>' +
+        '<td>' + esc(a.payoutEmail) + '</td>' +
+        '<td class="key">' + esc(a.code) + '</td>' +
         '<td>' + (a.downloads || 0) + '</td>' +
         '<td>' + a.conversions + '</td>' +
         '<td>$' + a.pendingCommission.toFixed(2) + '</td>' +
@@ -405,10 +412,11 @@
     empty.style.display = rows.length ? 'none' : 'block';
     rows.forEach(function (c) {
       var tr = document.createElement('tr');
-      var affName = c.affiliate ? c.affiliate.name + ' (' + c.affiliate.payoutEmail + ')' : '—';
+      var aff = c.affiliate;
       tr.innerHTML =
-        '<td>' + affName + '</td>' +
-        '<td>' + c.customerEmail + '</td>' +
+        '<td>' + (aff ? esc(aff.name) + '<br><span style="color: var(--text-muted); font-size: 12.5px;">' + esc(aff.email) + '</span>' : '—') + '</td>' +
+        '<td>' + (aff ? esc(aff.payoutEmail) : '—') + '</td>' +
+        '<td>' + esc(c.customerEmail) + '</td>' +
         '<td>' + (c.plan === 'lifetime' ? 'Lifetime' : 'Yearly') + '</td>' +
         '<td>$' + c.saleAmount.toFixed(2) + '</td>' +
         '<td>$' + c.commissionAmount.toFixed(2) + '</td>' +
@@ -443,11 +451,11 @@
     rows.forEach(function (r) {
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td>' + (r.site || '—') + '</td>' +
-        '<td>' + (r.tool || '—') + '</td>' +
-        '<td>' + (r.errorMessage || '—') + '</td>' +
-        '<td>' + (r.appVersion || '—') + '</td>' +
-        '<td>' + (r.osPlatform || '—') + '</td>' +
+        '<td>' + esc(r.site || '—') + '</td>' +
+        '<td>' + esc(r.tool || '—') + '</td>' +
+        '<td>' + esc(r.errorMessage || '—') + '</td>' +
+        '<td>' + esc(r.appVersion || '—') + '</td>' +
+        '<td>' + esc(r.osPlatform || '—') + '</td>' +
         '<td>' + fmtDate(r.createdAt) + '</td>';
       tbody.appendChild(tr);
     });
