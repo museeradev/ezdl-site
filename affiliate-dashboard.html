@@ -211,7 +211,7 @@
       var stats = result.json.stats;
 
       document.getElementById('dashGreeting').textContent = 'Welcome, ' + affiliate.name;
-      var link = window.location.origin + '/pricing.html?ref=' + affiliate.code;
+      var link = window.location.origin + '/?ref=' + affiliate.code;
       document.getElementById('refLink').textContent = link;
       document.getElementById('statDownloads').textContent = stats.downloads || 0;
       document.getElementById('statConversions').textContent = stats.conversions;
