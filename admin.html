@@ -206,6 +206,14 @@
 
     <div class="stat-grid">
       <div class="stat-tile accent">
+        <div class="n" id="statInstalls">—</div>
+        <div class="l">Total installs</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statInstalls7d">—</div>
+        <div class="l">Installs, last 7 days</div>
+      </div>
+      <div class="stat-tile accent">
         <div class="n" id="statActiveYearly">—</div>
         <div class="l">Active — Yearly</div>
       </div>
@@ -470,6 +478,8 @@
     document.getElementById('statExpired').textContent = stats.expiredYearly;
     document.getElementById('statRevoked').textContent = stats.revoked;
     document.getElementById('statTotalIssued').textContent = stats.totalKeysIssued;
+    document.getElementById('statInstalls').textContent = stats.installs;
+    document.getElementById('statInstalls7d').textContent = stats.installsLast7d;
 
     var data = await callAdmin(baseUrl, token, '/api/admin/licenses?limit=100');
     renderLicenses(data.licenses || []);
