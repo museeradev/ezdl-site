@@ -490,8 +490,7 @@ body.is-ready .hero-shot {
 /* -------------------------- hero image -------------------------- */
 
 .hero-shot {
-  width: min(1000px, 100%);
-  min-width: 1200px;
+  width: min(1200px, 100%);
   margin: 0 auto 0;
 }
 .hero-shot img {
@@ -1620,3 +1619,25 @@ table.dash-table th {
 }
 .dash-pill.pending { background: rgba(251, 191, 36, 0.15); color: var(--amber); }
 .dash-pill.paid { background: var(--accent-soft); color: var(--accent); }
+
+/* ------------------------------ phone layout ------------------------------ */
+
+@media (max-width: 600px) {
+  body { padding-inline: 16px; }
+  .hero h1,
+  .closer h2 { white-space: normal; }
+  .closer h2 { font-size: 28px; }
+  .block-glow { right: 0; max-width: 100%; }
+
+  /* Comparison table fits the screen instead of scrolling sideways. */
+  .compare { min-width: 0; table-layout: fixed; }
+  .compare th,
+  .compare td { padding: 12px 10px; font-size: 13px; }
+  .compare thead th { font-size: 10px; letter-spacing: 0.04em; }
+  .compare tbody th { white-space: normal; width: 38%; }
+  .cmp-no::before,
+  .cmp-yes::before { width: 12px; }
+
+  .sources,
+  .spotlight { padding-inline: 16px; }
+}
