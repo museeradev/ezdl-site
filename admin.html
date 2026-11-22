@@ -243,6 +243,28 @@
       </div>
     </div>
 
+    <h2>App usage</h2>
+    <div class="stat-grid">
+      <div class="stat-tile accent">
+        <div class="n" id="statUseDownloads">—</div>
+        <div class="l">Downloads, all time</div>
+      </div>
+      <div class="stat-tile accent">
+        <div class="n" id="statUseConversions">—</div>
+        <div class="l">Conversions, all time</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statUseDownloads7d">—</div>
+        <div class="l">Downloads, last 7 days</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statUseConversions7d">—</div>
+        <div class="l">Conversions, last 7 days</div>
+      </div>
+    </div>
+    <p id="usageBreakdown" style="color: var(--text-muted); font-size: 13px; margin: 0 0 8px;"></p>
+    <p style="color: var(--text-muted); font-size: 12px; margin: 0 0 28px;">Counted from app version 0.1.6 onward, only for users with anonymous stats turned on.</p>
+
     <h2>Recent licenses</h2>
     <div class="table-wrap">
       <table>
@@ -480,6 +502,22 @@
     document.getElementById('statTotalIssued').textContent = stats.totalKeysIssued;
     document.getElementById('statInstalls').textContent = stats.installs;
     document.getElementById('statInstalls7d').textContent = stats.installsLast7d;
+
+    try {
+      var usage = await callAdmin(baseUrl, token, '/api/admin/usage');
+      document.getElementById('statUseDownloads').textContent = usage.allTime.downloads;
+      document.getElementById('statUseConversions').textContent = usage.allTime.conversions;
+      document.getElementById('statUseDownloads7d').textContent = usage.last7d.downloads;
+      document.getElementById('statUseConversions7d').textContent = usage.last7d.conversions;
+      var top = function (rows, key) {
+        return rows.slice(0, 6).map(function (r) { return esc(r[key]) + ' ' + r.count; }).join(', ');
+      };
+      document.getElementById('usageBreakdown').innerHTML =
+        (usage.byTool.length ? 'Top tools: ' + top(usage.byTool, 'tool') : 'No usage counted yet.') +
+        (usage.bySite.length ? '<br>Top sites: ' + top(usage.bySite, 'site') : '');
+    } catch (_) {
+      document.getElementById('usageBreakdown').textContent = 'Usage stats unavailable.';
+    }
 
     var data = await callAdmin(baseUrl, token, '/api/admin/licenses?limit=100');
     renderLicenses(data.licenses || []);
