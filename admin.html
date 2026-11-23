@@ -269,7 +269,7 @@
       </div>
       <div class="stat-tile">
         <div class="n" id="statSuccessFixable7d">—</div>
-        <div class="l">Success rate, leaving out private videos and bad links</div>
+        <div class="l">Success rate, leaving out bad links and unshared files</div>
       </div>
       <div class="stat-tile">
         <div class="n" id="statSuccessAll">—</div>
@@ -547,6 +547,10 @@
               return esc(s.site) + ' ' + pct(s.rate) + ' (' + s.ok + ' ok, ' + s.failed + ' failed)';
             }).join(', ')
           : '';
+        if (sc.last7d.notCounted) {
+          document.getElementById('successBySite').innerHTML +=
+            '<br>Not counted: ' + sc.last7d.notCounted + ' private or removed videos (last 7 days)';
+        }
       }
     } catch (_) {
       document.getElementById('usageBreakdown').textContent = 'Usage stats unavailable.';
