@@ -262,6 +262,25 @@
         <div class="l">Conversions, last 7 days</div>
       </div>
     </div>
+    <div class="stat-grid">
+      <div class="stat-tile accent">
+        <div class="n" id="statSuccess7d">—</div>
+        <div class="l">Success rate, last 7 days</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statSuccessFixable7d">—</div>
+        <div class="l">Success rate, leaving out private videos and bad links</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statSuccessAll">—</div>
+        <div class="l">Success rate, all time</div>
+      </div>
+      <div class="stat-tile">
+        <div class="n" id="statFailed7d">—</div>
+        <div class="l">Failed, last 7 days</div>
+      </div>
+    </div>
+    <p id="successBySite" style="color: var(--text-muted); font-size: 13px; margin: 0 0 8px;"></p>
     <p id="usageBreakdown" style="color: var(--text-muted); font-size: 13px; margin: 0 0 8px;"></p>
     <p style="color: var(--text-muted); font-size: 12px; margin: 0 0 28px;">Counted from app version 0.1.6 onward, only for users with anonymous stats turned on.</p>
 
@@ -515,6 +534,20 @@
       document.getElementById('usageBreakdown').innerHTML =
         (usage.byTool.length ? 'Top tools: ' + top(usage.byTool, 'tool') : 'No usage counted yet.') +
         (usage.bySite.length ? '<br>Top sites: ' + top(usage.bySite, 'site') : '');
+      var sc = usage.success;
+      if (sc) {
+        var pct = function (v) { return v == null ? '—' : v + '%'; };
+        document.getElementById('statSuccess7d').textContent = pct(sc.last7d.rate);
+        document.getElementById('statSuccessFixable7d').textContent = pct(sc.last7d.rateFixable);
+        document.getElementById('statSuccessAll').textContent = pct(sc.allTime.rate);
+        document.getElementById('statFailed7d').textContent =
+          sc.last7d.failed + ' of ' + (sc.last7d.ok + sc.last7d.failed);
+        document.getElementById('successBySite').innerHTML = sc.bySite.length
+          ? 'By site, last 7 days: ' + sc.bySite.slice(0, 8).map(function (s) {
+              return esc(s.site) + ' ' + pct(s.rate) + ' (' + s.ok + ' ok, ' + s.failed + ' failed)';
+            }).join(', ')
+          : '';
+      }
     } catch (_) {
       document.getElementById('usageBreakdown').textContent = 'Usage stats unavailable.';
     }
